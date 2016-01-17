@@ -6,7 +6,7 @@
  */
 
 
-;(function(window,Menu){
+;(function(window,Fan){
 
 	"use strict";
 
@@ -15,16 +15,16 @@
 		open=false;
 
 
-	Menu.init=function(elem){
+	Fan.init=function(elem){
 		menuBtn=document.querySelector(elem);
 		wrapper=menuBtn.nextElementSibling;
-		menuBtn.onclick=Menu.open;
-		wrapper.onclick=Menu.stopEvent;
-		document.onclick=Menu.close;
+		menuBtn.onclick=Fan.open;
+		wrapper.onclick=Fan.stopEvent;
+		document.onclick=Fan.close;
 	}
 
-	Menu.open=function(e){
-		Menu.stopEvent();
+	Fan.open=function(e){
+		Fan.stopEvent();
 		if (!open) {
 			menuBtn.innerHTML='-';
 			wrapper.className='menu-wrapper open';
@@ -35,13 +35,13 @@
 		open=!open;
 	}
 
-	Menu.close=function(){
+	Fan.close=function(){
 		open=false;
 		menuBtn.innerHTML='+';
 		wrapper.className='menu-wrapper';
 	}
 
-	Menu.stopEvent=function(e){
+	Fan.stopEvent=function(e){
 		if (!e) var e = window.event;
 		if (e.stopPropagation) { 
 			// 兼容火狐
@@ -53,6 +53,6 @@
 		}
 	}
 
-	window.Menu = Menu;
+	window.Fan = Fan;
 	
-}(window,window.Menu || {}))
+}(window,window.Fan || {}))
