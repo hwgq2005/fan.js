@@ -9,11 +9,9 @@
 ;(function(window,Fan){
 
 	"use strict";
-
 	var menuBtn,
 		wrapper,
 		open=false;
-
 
 	Fan.init=function(elem){
 		menuBtn=document.querySelector(elem);
