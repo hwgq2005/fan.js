@@ -25,15 +25,19 @@
 		Fan.stopEvent();
 		if (!open) {
 			menuBtn.innerHTML='-';
+			//判断是否支持这个属性
 			if (!wrapper.classList) {
 				wrapper.className='menu-wrapper open';
 			};
 		}else{
 			menuBtn.innerHTML='+';
+			//判断是否支持这个属性
 			if (!wrapper.classList) {
 				wrapper.className='menu-wrapper';
 			};
 		};
+
+		//判断是否支持这个属性
 		if (wrapper.classList) {
 			wrapper.classList.toggle('open');
 		}
