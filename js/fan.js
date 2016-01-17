@@ -25,11 +25,18 @@
 		Fan.stopEvent();
 		if (!open) {
 			menuBtn.innerHTML='-';
-			wrapper.className='menu-wrapper open';
+			if (!wrapper.classList) {
+				wrapper.className='menu-wrapper open';
+			};
 		}else{
 			menuBtn.innerHTML='+';
-			wrapper.className='menu-wrapper';
+			if (!wrapper.classList) {
+				wrapper.className='menu-wrapper';
+			};
 		};
+		if (wrapper.classList) {
+			wrapper.classList.toggle('open');
+		}
 		open=!open;
 	}
 
