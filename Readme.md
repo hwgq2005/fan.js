@@ -28,7 +28,7 @@ DOM结构
 	<script src="js/fan.js"></script>
 JS调用
 -
-	Fan.init('#menu-btn');
+	new Fan('#menu-btn');
   
 
-该插件仅供学习，不断完善中。
+
