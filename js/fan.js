@@ -34,7 +34,7 @@
 	}
 
 	Fan.prototype.open=function(e){
-		console.log(this.isopen)
+
 		var _self=this;
 		_self.stopEvent(e);
 		if (!_self.isopen) {
@@ -56,6 +56,7 @@
 			_self.wrapper.classList.toggle('open');
 		}
 		_self.isopen=!_self.isopen;
+		
 	}
 
 	Fan.prototype.close=function(event){
