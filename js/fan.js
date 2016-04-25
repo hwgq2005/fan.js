@@ -5,52 +5,70 @@
  * @version 1.0
  */
 
-
 ;(function(window,Fan){
 
 	"use strict";
-	var menuBtn,
-		wrapper,
-		open=false;
 
-	Fan.init=function(elem){
-		menuBtn=document.querySelector(elem);
-		wrapper=menuBtn.nextElementSibling;
-		menuBtn.onclick=Fan.open;
-		wrapper.onclick=Fan.stopEvent;
-		document.onclick=Fan.close;
+	var Fan=function(element){
+
+		this.isopen  = false;
+		this.menuBtn = document.querySelector(element);
+		this.wrapper = this.menuBtn.nextElementSibling;
+
+		// 初始化
+		this.init(this.menuBtn,this.wrapper);
+
 	}
 
-	Fan.open=function(e){
-		Fan.stopEvent();
-		if (!open) {
-			menuBtn.innerHTML='-';
+	Fan.prototype.init=function(menuBtn,wrapper){
+
+		var _self=this;
+		menuBtn.onclick=function(event){
+			_self.open.call(_self,event);
+		}
+		document.onclick=function(){
+			_self.close.call(_self,event);
+		}
+		wrapper.onclick=_self.stopEvent;
+
+	}
+
+	Fan.prototype.open=function(e){
+		console.log(this.isopen)
+		var _self=this;
+		_self.stopEvent(e);
+		if (!_self.isopen) {
+			_self.menuBtn.innerHTML='-';
 			//判断是否支持这个属性
-			if (!wrapper.classList) {
-				wrapper.className='menu-wrapper open';
+			if (!_self.wrapper.classList) {
+				_self.wrapper.className='menu-wrapper open';
 			};
 		}else{
-			menuBtn.innerHTML='+';
+			_self.menuBtn.innerHTML='+';
 			//判断是否支持这个属性
-			if (!wrapper.classList) {
-				wrapper.className='menu-wrapper';
+			if (!_self.wrapper.classList) {
+				_self.wrapper.className='menu-wrapper';
 			};
 		};
 
 		//判断是否支持这个属性
-		if (wrapper.classList) {
-			wrapper.classList.toggle('open');
+		if (_self.wrapper.classList) {
+			_self.wrapper.classList.toggle('open');
 		}
-		open=!open;
+		_self.isopen=!_self.isopen;
 	}
 
-	Fan.close=function(){
-		open=false;
-		menuBtn.innerHTML='+';
-		wrapper.className='menu-wrapper';
+	Fan.prototype.close=function(event){
+
+		var _self=this;
+		_self.isopen=false;
+		_self.menuBtn.innerHTML='+';
+		_self.wrapper.className='menu-wrapper';
+
 	}
 
-	Fan.stopEvent=function(e){
+	Fan.prototype.stopEvent=function(e){
+
 		if (!e) var e = window.event;
 		if (e.stopPropagation) { 
 			// 兼容火狐
@@ -60,6 +78,7 @@
 			// 兼容IE
 			window.event.cancelBubble = true; 
 		}
+
 	}
 
 	window.Fan = Fan;
