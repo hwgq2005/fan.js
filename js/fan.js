@@ -29,14 +29,14 @@
 		document.onclick=function(){
 			_self.close.call(_self,event);
 		}
-		wrapper.onclick=_self.stopEvent;
+		wrapper.onclick=stopEvent;
 
 	}
 
 	Fan.prototype.open=function(e){
 
 		var _self=this;
-		_self.stopEvent(e);
+		stopEvent(e);
 		if (!_self.isopen) {
 			_self.menuBtn.innerHTML='-';
 			//判断是否支持这个属性
@@ -68,7 +68,7 @@
 
 	}
 
-	Fan.prototype.stopEvent=function(e){
+	function stopEvent(e){
 
 		if (!e) var e = window.event;
 		if (e.stopPropagation) { 
